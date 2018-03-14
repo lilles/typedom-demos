@@ -3,13 +3,18 @@ var TopLeftDot = function(element, centerX, centerY, radius, durationMicros) {
 }
 TopLeftDot.prototype = Object.create(Dot.prototype);
 TopLeftDot.prototype.constructor = TopLeftDot;
+TopLeftDot.prototype.leftObj = new CSSUnitValue(0, 'px');
+TopLeftDot.prototype.topObj = new CSSUnitValue(0, 'px');
+TopLeftDot.prototype.sizeObj = new CSSUnitValue(0, 'px');
 
 TopLeftDot.prototype.setPosition = function(position) {
-  var size = position[2];
-  this.element.attributeStyleMap.set('left', new CSSUnitValue(this.centerX + position[0], 'px'));
-  this.element.attributeStyleMap.set('top', new CSSUnitValue(this.centerY + position[1], 'px'));
-  this.element.attributeStyleMap.set('width', new CSSUnitValue(size, 'px'));
-  this.element.attributeStyleMap.set('height', new CSSUnitValue(size, 'px'));
+  this.leftObj.value = this.centerX + position[0];
+  this.element.attributeStyleMap.set('left', this.leftObj);
+  this.topObj.value = this.centerY + position[1];
+  this.element.attributeStyleMap.set('top', this.topObj);
+  this.sizeObj.value = position[2];
+  this.element.attributeStyleMap.set('width', this.sizeObj);
+  this.element.attributeStyleMap.set('height', this.sizeObj);
 };
 
 typedom_topleft = {
